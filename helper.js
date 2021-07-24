@@ -103,6 +103,7 @@ function base64FileToOrigin(base64File, outputDir = `${__dirname}\\output\\`) {
   setTimeout(() => {
     const newHash = getFileHashCode(file)
     if(newHash === hash){
+      console.log(`The file of [${filename}] is rebuilt successfully.`)
       exec(`explorer.exe /select, "${file}"`)
     }else{
       console.warn(`ERROR!!  The hashcode of file ${filename} is not correct`)
@@ -131,7 +132,7 @@ function stringToQR(QRstring, basename, outputDir = `${__dirname}\\QR_imgs\\`) {
  * @returns 切割的份数
  */
 function getPartNum(strlength) {
-  // 得到份数的浮点数和整数型
+  // 得到份数的浮点数和整数型，采用的是2200作为单片数字
   const partNumFloat = strlength / 2200
   let partNumInt = Math.ceil(partNumFloat) // 向上取整
   // 如果向上取整的太多，那回到向下取整
@@ -224,4 +225,5 @@ module.exports = {
   stringToQR,
   clearDir,
   getFileHashCode,
+  getAllFilesInDir,
 }
